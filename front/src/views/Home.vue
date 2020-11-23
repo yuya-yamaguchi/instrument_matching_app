@@ -1,18 +1,35 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="home-head">
+      <p>いつでも相談できる<br>メンターを見つけよう</p>
+    </div>
+    <div class="app-explain">
+      <p>楽器を「教えたい人」と「やりたい人」を繋ぐプラットフォーム</p>
+    </div>
+    <Instruments></Instruments>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Instruments from "@/components/Instruments.vue";
 
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
+    Instruments
   }
 }
 </script>
+
+<style scoped, lang="scss">
+
+.home-head {
+  font-size: 40px;
+  padding: 60px 0;
+}
+
+.app-explain {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 60px 0;
+}
+</style>
