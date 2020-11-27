@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_065624) do
+ActiveRecord::Schema.define(version: 2020_11_26_162924) do
 
   create_table "boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.integer "user_id", default: 0, null: false
+    t.bigint "user_id", default: 0, null: false
     t.integer "instrument_id", default: 0, null: false
     t.string "title", default: "", null: false
     t.string "explain", default: "", null: false
     t.string "image", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "fk_rails_0732f8ef3d"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -52,4 +53,5 @@ ActiveRecord::Schema.define(version: 2020_11_24_065624) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "boards", "users"
 end

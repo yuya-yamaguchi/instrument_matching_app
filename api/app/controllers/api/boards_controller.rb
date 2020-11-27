@@ -1,8 +1,23 @@
 class Api::BoardsController < ApplicationController
 
   def index
-    @boards = Board.all
-    render json: @boards
+    out_params = []
+    boards = Board.all
+    # boardsテーブルに紐付くuser情報を取得
+    boards.each do |board|
+      user = board.user
+      out_params << set_home_params(user, board)
+    end
+    
+    render json: out_params
+  end
+
+  def show
+    board = Board.find(params[:id])
+    user = board.user
+    out_params = set_home_params(user, board)
+
+    render json: out_params
   end
 
   def create
@@ -17,8 +32,16 @@ class Api::BoardsController < ApplicationController
   end
 
   private
-    def board_params
-      params.require(:board).permit(:title, :explain)
-    end
-    
+  def board_params
+    params.permit(:title, :explain)
+  end
+  
+  def set_home_params(user, board)
+    params = {
+      id:       board.id,
+      title:    board.title,
+      explain:  board.explain,
+      username: user.name
+    }
+  end
 end
