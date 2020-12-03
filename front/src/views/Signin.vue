@@ -10,7 +10,7 @@
         <p>パスワード</p>
         <input type="password" v-model="password">
       </div>
-      <button class="sign-up-button" @click="signIn()">ログインする</button>
+      <button type="submit" class="sign-up-button">ログインする</button>
     </form>
   </div>
 </template>
@@ -27,7 +27,8 @@ export default {
       email: "",
       password: "",
       loginFaild: false,
-      users: []
+      users: [],
+      user: {}
     }
   },
   methods: {
@@ -39,7 +40,10 @@ export default {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.data.email);
+        this.$store.dispatch("auth", {
+          userEmail: response.data.data.email
+        });
         this.$router.push({ 
           name: "Home"
         })

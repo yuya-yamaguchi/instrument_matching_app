@@ -4,6 +4,7 @@
     <div class="header-menus">
       <router-link to="/signup" class="header-menu">新規会員登録</router-link>
       <router-link to="/signin" class="header-menu">ログイン</router-link>
+      {{ $store.state.userEmail }}
     </div>
   </header>
 </template>
