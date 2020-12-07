@@ -10,7 +10,7 @@
         <p>パスワード</p>
         <input type="password" v-model="password">
       </div>
-      <button class="sign-up-button" @click="signIn()">ログインする</button>
+      <button type="submit" class="sign-up-button">ログインする</button>
     </form>
   </div>
 </template>
@@ -27,7 +27,8 @@ export default {
       email: "",
       password: "",
       loginFaild: false,
-      users: []
+      users: [],
+      user: {}
     }
   },
   methods: {
@@ -36,10 +37,19 @@ export default {
         {
           email: this.email,
           password: this.password
-        }
+        }	
       )
       .then((response) => {
-        console.log(response.data);
+        console.log(response.headers['access-token']);
+        this.$store.dispatch(
+          "updateUser",
+          {
+            email:  response.data.data.email,
+            token:  response.headers['access-token'],
+            uid:    response.headers['uid'],
+            client: response.headers['client']
+          }
+        );
         this.$router.push({ 
           name: "Home"
         })
@@ -51,4 +61,3 @@ export default {
   }
 }
 </script>
-

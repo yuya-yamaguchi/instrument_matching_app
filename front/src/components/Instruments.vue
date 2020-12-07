@@ -41,7 +41,6 @@ export default {
     getBoards: function(){
       axios.get(`http://${hostName}${path}`)
       .then((response) => {
-        console.log(response);
         this.boards = response.data;
       })
       .catch(function(error) {
@@ -49,7 +48,7 @@ export default {
       });
     }
   },
-  mounted: function() {
+  created: function() {
     this.getBoards();
   }
 }
