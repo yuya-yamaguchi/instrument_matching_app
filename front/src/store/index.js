@@ -1,19 +1,15 @@
 import { createStore } from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import auth from './modules/auth'
 
 export default createStore({
-  state: {
-    userEmail: ""
-  },
-  mutations: {
-    updateUser(state, user) {
-      state.userEmail = user.userEmail;
-    }
-  },
-  actions: {
-    auth(context, user) {
-      context.commit('updateUser', user);
-    }
-  },
   modules: {
-  }
+    auth
+  },
+  // strict: true,
+  plugins: [createPersistedState({
+    key: 'UserInfo',
+    paths: ['auth'],
+    storage: window.sessionStorage
+  })]
 })

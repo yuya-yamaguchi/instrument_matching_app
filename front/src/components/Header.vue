@@ -2,15 +2,53 @@
   <header>
     <router-link to="/" class="main-title">INST_APP</router-link>
     <div class="header-menus">
-      <router-link to="/signup" class="header-menu">新規会員登録</router-link>
-      <router-link to="/signin" class="header-menu">ログイン</router-link>
-      {{ $store.state.userEmail }}
+      <div v-if="!$store.getters.email" class="header-menus">
+        <router-link to="/signup" class="header-menu">新規会員登録</router-link>
+        <router-link to="/signin" class="header-menu">ログイン</router-link>
+      </div>
+      <div v-else>
+        <p>{{ $store.getters.email }}</p>
+        <button type="submit" @click="logout">ログアウト</button>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
+import axios from 'axios';
 
+const hostName = 'localhost:3000';
+const sign_out_path = '/api/v1/auth/sign_out'
+
+export default {
+  methods: {
+    logout: function() {
+      console.log("logout");
+      // API側にてログアウトを行う
+      axios.delete(
+        `http://${hostName}${sign_out_path}`,
+        {
+          data: {
+            "uid":          this.$store.getters.uid,
+            "access-token": this.$store.getters.token,
+            "client":       this.$store.getters.client
+          }
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        // FRONT側のユーザ情報を削除
+        this.$store.dispatch("logout");
+        this.$router.push({
+          name: "Home"
+        })
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
+  }
+}
 </script>
 
 <style scoped, lang="scss">
@@ -20,6 +58,7 @@ header{
   background: #333;
   display: flex;
   justify-content: space-between;
+  color: #FFF;
   .main-title {
     text-align: left;
     line-height: 60px;

@@ -37,13 +37,19 @@ export default {
         {
           email: this.email,
           password: this.password
-        }
+        }	
       )
       .then((response) => {
-        console.log(response.data.data.email);
-        this.$store.dispatch("auth", {
-          userEmail: response.data.data.email
-        });
+        console.log(response.headers['access-token']);
+        this.$store.dispatch(
+          "updateUser",
+          {
+            email:  response.data.data.email,
+            token:  response.headers['access-token'],
+            uid:    response.headers['uid'],
+            client: response.headers['client']
+          }
+        );
         this.$router.push({ 
           name: "Home"
         })
@@ -55,4 +61,3 @@ export default {
   }
 }
 </script>
-
