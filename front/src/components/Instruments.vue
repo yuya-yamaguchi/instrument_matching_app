@@ -8,8 +8,8 @@
           <p class="mentors-card--title">
             <router-link :to="`/boards/${board.id}`">{{ board.title }}</router-link>
           </p>
-          <p class="mentors-card--explain">
-            {{ board.explain }}
+          <p class="mentors-card--detail">
+            {{ board.detail }}
           </p>
           <div class="mentors-card--user">
             <div class="mentors-card--user--img">
@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style scoped, lang="scss">
+<style lang="scss" scoped>
 .popular-instrument {
   &--each{
     margin: 0 auto;
@@ -87,7 +87,7 @@ export default {
             color: #2c3e50;
           }
         }
-        &--explain {
+        &--detail {
           font-size: 12px;
         }
         &--user {
@@ -96,9 +96,6 @@ export default {
           margin: 10px 0;
           &--img {
             width: 20%;
-          }
-          &--name {
-            
           }
         }
       }

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_162924) do
+ActiveRecord::Schema.define(version: 2020_12_07_105711) do
 
   create_table "boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", default: 0, null: false
     t.integer "instrument_id", default: 0, null: false
     t.string "title", default: "", null: false
-    t.string "explain", default: "", null: false
+    t.text "detail"
     t.string "image", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

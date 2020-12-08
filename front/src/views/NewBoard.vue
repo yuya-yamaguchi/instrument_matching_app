@@ -8,7 +8,7 @@
       </div>
       <div class="form-textarea">
         <p>できること</p>
-        <textarea v-model="explain" placeholder="例：ギターのメンターです！特にエレキギターが得意です！"></textarea>
+        <textarea v-model="detail" placeholder="例：ギターのメンターです！特にエレキギターが得意です！"></textarea>
       </div>
       <button class="sign-up-button" @click="boardCreate()">登録する</button>
     </form>
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       title: "",
-      explain: ""
+      detail: ""
     }
   },
   methods: {
@@ -33,7 +33,7 @@ export default {
       axios.post(`http://${hostName}${path}`,
         {
           title: this.title,
-          explain: this.explain
+          detail: this.detail
         }
       )
       .then(() => {

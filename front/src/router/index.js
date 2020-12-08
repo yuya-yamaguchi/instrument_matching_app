@@ -6,26 +6,31 @@ import NewBoard from '@/views/NewBoard.vue'
 import ShowBoard from '@/views/ShowBoard.vue'
 
 const routes = [
+  // ホーム画面
   {
     path: '/',
     name: 'Home',
     component: Home
   },
+  // 新規会員登録画面
   {
     path: '/signup',
     name: 'Signup',
     component: Signup
   },
+  // ログイン画面
   {
     path: '/signin',
     name: 'Signin',
     component: Signin
   },
+  // 登録画面
   {
     path: '/newboard',
     name: 'NewBoard',
     component: NewBoard
   },
+  // 掲示板詳細画面
   {
     path: '/boards/:id',
     name: 'ShowBoard',

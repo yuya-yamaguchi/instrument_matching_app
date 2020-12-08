@@ -33,14 +33,14 @@ class Api::BoardsController < ApplicationController
 
   private
   def board_params
-    params.permit(:title, :explain)
+    params.permit(:title, :detail)
   end
   
   def set_home_params(user, board)
     params = {
       id:       board.id,
       title:    board.title,
-      explain:  board.explain,
+      detail:  board.detail,
       username: user.name
     }
   end
