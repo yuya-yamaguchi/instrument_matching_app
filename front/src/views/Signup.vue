@@ -79,7 +79,7 @@ export default {
 }
 
 .form-item{
-  width: 500px;
+  width:  80%;
   margin: 20px auto;
   text-align: center;
   p {
@@ -88,7 +88,7 @@ export default {
     margin: 5px;
   }
   input {
-    width: 80%;
+    width: 90%;
     padding: 5px;
   }
 }

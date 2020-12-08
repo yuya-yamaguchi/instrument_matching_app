@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <Header></Header>
-    <div class="main-flame">
+    <div class="base-container">
       <router-view/>
     </div>
     <Footer></Footer>
@@ -12,6 +12,8 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import "./assets/reset.css";
+import "./assets/style/_global.scss";
+import "./assets/style/_variable.scss";
 
 export default {
   components: {
@@ -29,7 +31,7 @@ export default {
   color: #2c3e50;
 }
 
-.main-flame{
+.base-container{
   width: 90%;
   margin: 0 auto;
 }

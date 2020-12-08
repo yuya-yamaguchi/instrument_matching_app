@@ -6,17 +6,17 @@
         <div class="mentors-card" v-for="(board, i) in boards" :key="i">
           <img src="../assets/logo.png">
           <p class="mentors-card--title">
-            {{ board.title }}
+            <router-link :to="`/boards/${board.id}`">{{ board.title }}</router-link>
           </p>
-          <p class="mentors-card--explain">
-            {{ board.explain }}
+          <p class="mentors-card--detail">
+            {{ board.detail }}
           </p>
           <div class="mentors-card--user">
             <div class="mentors-card--user--img">
               <img src="../assets/logo.png">
             </div>
             <p class="mentors-card--user--name">
-              テストユーザ
+              {{ board.username }}
             </p>
           </div>
         </div>
@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style scoped, lang="scss">
+<style lang="scss" scoped>
 .popular-instrument {
   &--each{
     margin: 0 auto;
@@ -64,6 +64,7 @@ export default {
     .mentors-box {
       display: flex;
       justify-content:  flex-start;
+      flex-wrap: wrap;
       .mentors-card {
         width: 240px;
         height: 350px;
@@ -79,9 +80,14 @@ export default {
         }
         &--title {
           font-size: 20px;
+          font-weight: bold;
           margin: 10px 0;
+          a {
+            text-decoration: none;
+            color: #2c3e50;
+          }
         }
-        &--explain {
+        &--detail {
           font-size: 12px;
         }
         &--user {
@@ -90,9 +96,6 @@ export default {
           margin: 10px 0;
           &--img {
             width: 20%;
-          }
-          &--name {
-            
           }
         }
       }
