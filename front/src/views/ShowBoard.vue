@@ -50,7 +50,7 @@ export default {
   margin: 50px 0;
   .side-container{
     width: 30%;
-    background: wheat;
+    background: var(--main_color);
     box-sizing: border-box;
     padding: 10px;
     img {

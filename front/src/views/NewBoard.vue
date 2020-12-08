@@ -10,7 +10,7 @@
         <p>できること</p>
         <textarea v-model="detail" placeholder="例：ギターのメンターです！特にエレキギターが得意です！"></textarea>
       </div>
-      <button class="sign-up-button" @click="boardCreate()">登録する</button>
+      <button class="sign-up-button">登録する</button>
     </form>
   </div>
 </template>

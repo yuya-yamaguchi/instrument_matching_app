@@ -21,6 +21,7 @@ class Api::BoardsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @board = Board.new(board_params)
     @board.user_id = 1
     @board.instrument_id = 1
@@ -40,7 +41,7 @@ class Api::BoardsController < ApplicationController
     params = {
       id:       board.id,
       title:    board.title,
-      detail:  board.detail,
+      detail:   board.detail,
       username: user.name
     }
   end

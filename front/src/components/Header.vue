@@ -3,12 +3,13 @@
     <router-link to="/" class="main-title">INST_APP</router-link>
     <div class="header-menus">
       <div v-if="!$store.getters.email" class="header-menus">
-        <router-link to="/signup" class="header-menu">新規会員登録</router-link>
-        <router-link to="/signin" class="header-menu">ログイン</router-link>
+        <router-link to="/signup" class="sign-btn">新規会員登録</router-link>
+        <router-link to="/signin" class="sign-btn">ログイン</router-link>
       </div>
-      <div v-else>
-        <p>{{ $store.getters.email }}</p>
-        <button type="submit" @click="logout">ログアウト</button>
+      <div v-else class="header-menus">
+        <router-link to="/newboard" class="sign-btn">メンターとして登録する</router-link>
+        <button type="submit" @click="logout" class="sign-btn">ログアウト</button>
+        <div class="user-name">{{ $store.getters.email }}</div>
       </div>
     </div>
   </header>
@@ -23,7 +24,6 @@ const sign_out_path = '/api/v1/auth/sign_out'
 export default {
   methods: {
     logout: function() {
-      console.log("logout");
       // API側にてログアウトを行う
       axios.delete(
         `http://${hostName}${sign_out_path}`,
@@ -71,7 +71,7 @@ header{
     margin-right: 30px;
     display: flex;
     justify-content: flex-end;
-    .header-menu {
+    .sign-btn {
       display: block;
       text-decoration: none;
       color:#FFF;
@@ -85,6 +85,10 @@ header{
       border-radius: 5px;
       height: 30px;
       line-height: 30px;
+    }
+    .user-name {
+      font-size: 16px;
+      padding-top: 15px;
     }
   }
 }
