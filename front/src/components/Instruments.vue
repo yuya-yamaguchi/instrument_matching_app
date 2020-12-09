@@ -1,103 +1,74 @@
 <template>
-  <div class="popular-instrument">
-    <div class="popular-instrument--each">
-      <h3>ギター</h3>
-      <div class="mentors-box">
-        <div class="mentors-card" v-for="(board, i) in boards" :key="i">
+  <div class="boards-container">
+    <div class="posted-board" v-for="(board, i) in boards" :key="i">
+      <img src="../assets/logo.png">
+      <p class="posted-board--title">
+        <router-link :to="`/boards/${board.id}`">{{ board.title }}</router-link>
+      </p>
+      <p class="posted-board--detail">
+        {{ board.detail }}
+      </p>
+      <div class="mentors-card--user">
+        <div class="posted-board--user--img">
           <img src="../assets/logo.png">
-          <p class="mentors-card--title">
-            <router-link :to="`/boards/${board.id}`">{{ board.title }}</router-link>
-          </p>
-          <p class="mentors-card--detail">
-            {{ board.detail }}
-          </p>
-          <div class="mentors-card--user">
-            <div class="mentors-card--user--img">
-              <img src="../assets/logo.png">
-            </div>
-            <p class="mentors-card--user--name">
-              {{ board.username }}
-            </p>
-          </div>
         </div>
+        <p class="posted-board--user--name">
+          {{ board.username }}
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
-const hostName = 'localhost:3000';
-const path = '/api/boards'
-
 export default {
+  props: {
+    boardsProp: {}
+  },
   data() {
     return {
-      boards: []
+      boards: this.boardsProp
     }
-  },
-  methods: {
-    getBoards: function(){
-      axios.get(`http://${hostName}${path}`)
-      .then((response) => {
-        this.boards = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    }
-  },
-  created: function() {
-    this.getBoards();
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.popular-instrument {
-  &--each{
-    margin: 0 auto;
-    h3 {
-      font-size: 30px;
+.boards-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  .posted-board {
+    width: 240px;
+    height: 350px;
+    box-shadow: 10px 10px 10px rgba(70, 70, 70, 0.2);
+    background: #FFF;
+    margin: 20px;
+    padding: 10px;
+    img {
+      display: block;
+      width: 80%;
+      margin: 0 auto;
+      background: #333;
     }
-    .mentors-box {
+    &--title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+      a {
+        text-decoration: none;
+        color: #2c3e50;
+      }
+    }
+    &--detail {
+      font-size: 12px;
+    }
+    &--user {
       display: flex;
-      justify-content:  flex-start;
-      flex-wrap: wrap;
-      .mentors-card {
-        width: 240px;
-        height: 350px;
-        box-shadow: 10px 10px 10px rgba(70, 70, 70, 0.2);
-        background: #FFF;
-        margin: 20px;
-        padding: 10px;
-        img {
-          display: block;
-          width: 80%;
-          margin: 0 auto;
-          background: #333;
-        }
-        &--title {
-          font-size: 20px;
-          font-weight: bold;
-          margin: 10px 0;
-          a {
-            text-decoration: none;
-            color: #2c3e50;
-          }
-        }
-        &--detail {
-          font-size: 12px;
-        }
-        &--user {
-          display: flex;
-          justify-content: flex-start;
-          margin: 10px 0;
-          &--img {
-            width: 20%;
-          }
-        }
+      justify-content: flex-start;
+      margin: 10px 0;
+      &--img {
+        width: 20%;
       }
     }
   }

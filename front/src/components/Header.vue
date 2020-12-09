@@ -9,7 +9,7 @@
       <div v-else class="header-menus">
         <router-link to="/newboard" class="sign-btn">メンターとして登録する</router-link>
         <button type="submit" @click="logout" class="sign-btn">ログアウト</button>
-        <div class="user-name">{{ $store.getters.email }}</div>
+        <router-link to="/mypage" class="user-name">{{ $store.getters.email }}</router-link>
       </div>
     </div>
   </header>
@@ -89,6 +89,8 @@ header{
     .user-name {
       font-size: 16px;
       padding-top: 15px;
+      text-decoration: none;
+      color: #FFF;
     }
   }
 }

@@ -1,3 +1,27 @@
+.single-container {
+  margin: 50px 0;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.double-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+  .side-container{
+    width: 30%;
+    background: var(--main_color);
+    box-sizing: border-box;
+    padding: 10px;
+  }
+  .main-container{
+    width: 65%;
+    background: var(--main_color);
+    box-sizing: border-box;
+    padding: 10px;
+  }
+}
+
 .inner-container {
   width: 90%;
   margin: 50px auto;

@@ -8,5 +8,11 @@ Rails.application.routes.draw do
     end
 
     resources :boards, only: [:index, :new, :show, :create]
+
+    resources :users do
+      collection do
+        get :mypage
+      end
+    end
   end
 end

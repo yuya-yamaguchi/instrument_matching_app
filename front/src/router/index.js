@@ -4,6 +4,7 @@ import Signup from '@/views/Signup.vue'
 import Signin from '@/views/Signin.vue'
 import NewBoard from '@/views/NewBoard.vue'
 import ShowBoard from '@/views/ShowBoard.vue'
+import Mypage from '@/views/Mypage.vue'
 
 const routes = [
   // ホーム画面
@@ -35,6 +36,12 @@ const routes = [
     path: '/boards/:id',
     name: 'ShowBoard',
     component: ShowBoard
+  },
+  // マイページ
+  {
+    path: '/mypage',
+    name: 'Mypage',
+    component: Mypage
   }
 ]
 
