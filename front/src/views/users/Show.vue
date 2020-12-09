@@ -1,14 +1,12 @@
 <template>
   <div class="single-container">
-    <div class="mypage-user-icon">
+    <div class="user-icon">
       <img src="@/assets/logo.png">
       <p class="main-title">{{ user.name }}</p>
     </div>
-    <div class="my-boards">
-      <p class="my-boards--title sub-title">メンターとして掲載した募集</p>
-      <div class="my-boards--contents">
-        <Instruments v-if="boards!=''" :boards-prop="boards"></Instruments>
-      </div>
+    <div class="user-boards">
+      <p class="user-boards--title sub-title">掲載している募集</p>
+      <Instruments v-if="boards!=''" :boards-prop="boards"></Instruments>
     </div>
   </div>
 </template>
@@ -18,7 +16,7 @@ import axios from 'axios';
 import Instruments from "@/components/Instruments.vue";
 
 const hostName = 'localhost:3000';
-const mypage_path = '/api/users/mypage';
+const users_show_path = '/api/users';
 
 export default {
   components: {
@@ -31,14 +29,9 @@ export default {
     }
   },
   methods: {
-    getMypageInfo: function() {
+    getUserInfo: function() {
       axios.get(
-        `http://${hostName}${mypage_path}`,
-        {
-          params: {
-            uid: this.$store.getters.uid
-          }
-        }
+        `http://${hostName}${users_show_path}/${this.$route.params.id}`
       )
       .then((response) => {
         // FRONT側のユーザ情報を削除
@@ -51,13 +44,13 @@ export default {
     }
   },
   created: function() {
-    this.getMypageInfo();
+    this.getUserInfo();
   }
 }
 </script>
 
 <style scoped lang="scss">
-.mypage-user-icon {
+.user-icon {
   text-align: center;
   border: 1px solid #333;
 }

@@ -13,7 +13,7 @@
           <img src="../assets/logo.png">
         </div>
         <p class="posted-board--user--name">
-          {{ board.username }}
+          <router-link :to="`/users/${board.user_id}`">{{ board.username }}</router-link>
         </p>
       </div>
     </div>

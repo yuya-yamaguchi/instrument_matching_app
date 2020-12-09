@@ -6,6 +6,7 @@ class Board < ApplicationRecord
       id:       self.id,
       title:    self.title,
       detail:   self.detail,
+      user_id:  user.id,
       username: user.name
     }
   end

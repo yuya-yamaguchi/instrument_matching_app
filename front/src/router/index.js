@@ -5,6 +5,7 @@ import Signin from '@/views/Signin.vue'
 import NewBoard from '@/views/NewBoard.vue'
 import ShowBoard from '@/views/ShowBoard.vue'
 import Mypage from '@/views/Mypage.vue'
+import UserShow from '@/views/users/Show.vue'
 
 const routes = [
   // ホーム画面
@@ -42,6 +43,12 @@ const routes = [
     path: '/mypage',
     name: 'Mypage',
     component: Mypage
+  },
+  // ユーザ詳細画面
+  {
+    path: '/users/:id',
+    name: 'User',
+    component: UserShow
   }
 ]
 
