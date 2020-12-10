@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # mount_devise_token_auth_for 'User', at: 'auth'
+  resources :test
   match '*path' => 'options_request#preflight', via: :options
 
   namespace :api, { format: 'json' } do
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     resources :users do
       collection do
         get :mypage
+        get :profile
       end
     end
   end

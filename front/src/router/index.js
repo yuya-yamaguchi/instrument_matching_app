@@ -5,6 +5,7 @@ import Signin from '@/views/Signin.vue'
 import NewBoard from '@/views/NewBoard.vue'
 import ShowBoard from '@/views/ShowBoard.vue'
 import Mypage from '@/views/Mypage.vue'
+import MypageProfile from '@/views/users/Profile.vue'
 import UserShow from '@/views/users/Show.vue'
 
 const routes = [
@@ -38,17 +39,23 @@ const routes = [
     name: 'ShowBoard',
     component: ShowBoard
   },
-  // マイページ
   {
+  // マイページ
     path: '/mypage',
     name: 'Mypage',
     component: Mypage
+  },
+  {
+  // マイページプロフィール編集
+    path: '/mypage/profile',
+    name: 'MypageProfile',
+    component: MypageProfile
   },
   // ユーザ詳細画面
   {
     path: '/users/:id',
     name: 'User',
-    component: UserShow
+    component: UserShow,
   }
 ]
 
