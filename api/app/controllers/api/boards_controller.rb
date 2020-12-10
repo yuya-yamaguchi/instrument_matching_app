@@ -6,7 +6,7 @@ class Api::BoardsController < ApplicationController
     # boardsテーブルに紐付くuser情報を取得
     boards.each do |board|
       user = board.user
-      out_params << set_home_params(user, board)
+      out_params << board.set_posted_board_params(user)
     end
     
     render json: out_params
@@ -15,13 +15,12 @@ class Api::BoardsController < ApplicationController
   def show
     board = Board.find(params[:id])
     user = board.user
-    out_params = set_home_params(user, board)
+    out_params = board.set_posted_board_params(user)
 
     render json: out_params
   end
 
   def create
-    # binding.pry
     @board = Board.new(board_params)
     @board.user_id = 1
     @board.instrument_id = 1
@@ -35,14 +34,5 @@ class Api::BoardsController < ApplicationController
   private
   def board_params
     params.permit(:title, :detail)
-  end
-  
-  def set_home_params(user, board)
-    params = {
-      id:       board.id,
-      title:    board.title,
-      detail:   board.detail,
-      username: user.name
-    }
   end
 end

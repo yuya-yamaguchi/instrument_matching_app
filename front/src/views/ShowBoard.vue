@@ -1,5 +1,5 @@
 <template>
-  <div class="all-container">
+  <div class="double-container">
     <div class="side-container">
       <img src="../assets/logo.png">
       <p class="user-name">{{ board.username }}</p>
@@ -44,26 +44,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.all-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 50px 0;
-  .side-container{
-    width: 30%;
-    background: var(--main_color);
-    box-sizing: border-box;
-    padding: 10px;
-    img {
-      display: block;
-      width: 50%;
-      margin: 0 auto;
-    }
-  }
-  .main-container{
-    width: 65%;
-    background: var(--main_color);
-    box-sizing: border-box;
-    padding: 10px;
-  }
+img {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
 }
 </style>

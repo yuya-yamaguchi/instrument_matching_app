@@ -78,21 +78,6 @@ export default {
 
 }
 
-.form-item{
-  width:  80%;
-  margin: 20px auto;
-  text-align: center;
-  p {
-    text-align: left;
-    font-size: 20px;
-    margin: 5px;
-  }
-  input {
-    width: 90%;
-    padding: 5px;
-  }
-}
-
 .sign-up-button {
   display: block;
   margin: 20px auto;
