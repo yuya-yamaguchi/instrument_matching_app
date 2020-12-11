@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 
   has_many :boards
   has_many :apply_boards
+  has_many :user_apply_boards, through: :apply_boards, source: :board
 end
