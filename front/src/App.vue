@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="nav" v-cloak>
     <Header></Header>
     <div class="base-container">
       <router-view/>
@@ -31,8 +31,13 @@ export default {
   color: #2c3e50;
 }
 
+[v-cloak] {
+  display: none;
+}
+
 .base-container{
   width: 90%;
+  max-width: 100rem;
   margin: 0 auto;
 }
 </style>

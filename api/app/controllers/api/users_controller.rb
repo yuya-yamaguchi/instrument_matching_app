@@ -20,13 +20,25 @@ class Api::UsersController < ApplicationController
   end
 
   def mypage
+    my_boards_params = []
+    apply_boards_params = []
+    
     user = User.find_by(uid: params[:uid])
-    boards = user.boards
-    boards_params = []
-    boards.each do |board|
-      boards_params << board.set_posted_board_params(user)
+    # ログインユーザが申込済のboardsを取得
+    my_boards = user.boards
+    my_boards.each do |board|
+      my_boards_params << board.set_posted_board_params(user)
     end
-    render json: { user: user, boards: boards_params }
+    # ログインユーザが募集したboardsを取得
+    apply_boards = user.user_apply_boards
+    apply_boards.each do |board|
+      apply_boards_params << board.set_posted_board_params(board.user)
+    end
+
+    render json: { user:         user,
+                   my_boards:    my_boards_params,
+                   apply_boards: apply_boards_params,
+                 }
   end
 
   def profile
