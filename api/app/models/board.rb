@@ -1,5 +1,6 @@
 class Board < ApplicationRecord
   belongs_to :user
+  has_many :apply_boards
 
   def set_posted_board_params(user)
     params = {

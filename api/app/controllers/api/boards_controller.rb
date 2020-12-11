@@ -13,11 +13,17 @@ class Api::BoardsController < ApplicationController
   end
 
   def show
+    applied_flg = false
     board = Board.find(params[:id])
+    apply_board = ApplyBoard.where(user_id: params[:user_id]).where(board_id: params[:id])
+    # binding.pry
+    if apply_board.length > 0
+      applied_flg = true
+    end
     user = board.user
     out_params = board.set_posted_board_params(user)
 
-    render json: out_params
+    render json: {board: out_params, applied: applied_flg}
   end
 
   def create
@@ -28,6 +34,16 @@ class Api::BoardsController < ApplicationController
       render json: "create new board.\n", status: 200
     else
       render json: "fail to create.\n", status: 500
+    end
+  end
+
+  def apply
+    # binding.pry
+    apply_board = ApplyBoard.new(board_id: params[:id], user_id: params[:user_id])
+    if apply_board.save
+      render status: 200
+    else
+      render status: 500
     end
   end
 

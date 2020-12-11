@@ -33,6 +33,7 @@ export default {
 
 .base-container{
   width: 90%;
+  max-width: 100rem;
   margin: 0 auto;
 }
 </style>
