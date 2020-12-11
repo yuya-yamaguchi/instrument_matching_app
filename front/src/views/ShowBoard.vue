@@ -10,7 +10,9 @@
         <p class="sub-title">できること</p>
         <p class="explain-text">{{ board.detail }}</p>
       </div>
-      <button :disabled="applied" @click="applyBoard()" class="button-default" :class="{ activeClass: applied }">{{ applyBtnText }}</button>
+      <div v-if="board.user_id != $store.getters.id">
+        <button :disabled="applied" @click="applyBoard()" class="button-default" :class="{ activeClass: applied }">{{ applyBtnText }}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -25,9 +27,12 @@ export default {
   data() {
     return {
       board: [],
-      // computedを利用する?
-      applyBtnText: "この募集に申し込む",
       applied: false
+    }
+  },
+  computed: {
+    applyBtnText() {
+      return this.applied ? "申し込み済" : "この募集に申し込む"
     }
   },
   methods: {
@@ -44,9 +49,6 @@ export default {
         console.log(response);
         this.board = response.data.board;
         this.applied = response.data.applied;
-        if ( this.applied ) {
-          this.applyBtnText = "申し込み済"
-        }
       })
       .catch(function(error) {
         console.log(error);
@@ -70,7 +72,7 @@ export default {
       });
     },
   },
-  created: function() {
+  mounted: function() {
     this.getBoard();
   }
 }

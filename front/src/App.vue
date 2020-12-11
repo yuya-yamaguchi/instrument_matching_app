@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="nav" v-cloak>
     <Header></Header>
     <div class="base-container">
       <router-view/>
@@ -29,6 +29,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+[v-cloak] {
+  display: none;
 }
 
 .base-container{

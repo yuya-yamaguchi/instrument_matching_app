@@ -7,6 +7,7 @@
       <div class="mypage-user-icon">
         <img src="@/assets/logo.png">
         <p class="main-title">{{ user.name }}</p>
+        <p>{{ user.profile }}</p>
       </div>
        <div class="apply-boards">
         <p class="apply-boards--title sub-title">申し込み済の募集</p>
@@ -16,7 +17,7 @@
       </div>
       <div class="my-boards">
         <p class="my-boards--title sub-title">メンターとして掲載した募集</p>
-        <div class="my-boards--contents">
+        <div class="my-boards--contents ">
           <Instruments v-if="myBoards!=''" :boards-prop="myBoards"/>
         </div>
       </div>
