@@ -12,6 +12,14 @@ class Api::InstructorsController < ApplicationController
     render json: out_params
   end
 
+  def show
+    applied_flg = false
+    instructor = Instructor.find(params[:id])
+    user = instructor.user
+    out_params = instructor.set_instructor_params(user)
+    render json: { instructor: out_params }
+  end
+
   def create
     instructor = Instructor.new(instructor_params)
     if instructor.save

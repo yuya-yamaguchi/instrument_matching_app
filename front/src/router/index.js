@@ -4,7 +4,8 @@ import Signup from '@/views/Signup.vue'
 import Signin from '@/views/Signin.vue'
 // import NewBoard from '@/views/NewBoard.vue'
 import InstructorNew from '@/views/instructor/New.vue'
-import ShowBoard from '@/views/ShowBoard.vue'
+// import ShowBoard from '@/views/ShowBoard.vue'
+import InstructorShow from '@/views/instructor/Show.vue'
 import Mypage from '@/views/Mypage.vue'
 import MypageProfile from '@/views/users/Profile.vue'
 import UserShow from '@/views/users/Show.vue'
@@ -34,11 +35,11 @@ const routes = [
     name: 'InstructorNew',
     component: InstructorNew
   },
-  // 掲示板詳細画面
+  // 講師詳細画面
   {
-    path: '/boards/:id',
-    name: 'ShowBoard',
-    component: ShowBoard
+    path: '/instructors/:id',
+    name: 'InstructorShow',
+    component: InstructorShow
   },
   {
   // マイページ
