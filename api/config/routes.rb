@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for "User", at: "auth"
     end
 
+    resources :instructors, only: [:create]
+
     resources :boards, only: [:index, :new, :show, :create] do
       member do
         post :apply
