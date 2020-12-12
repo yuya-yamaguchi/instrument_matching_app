@@ -2,8 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Signup from '@/views/Signup.vue'
 import Signin from '@/views/Signin.vue'
-import NewBoard from '@/views/NewBoard.vue'
-import ShowBoard from '@/views/ShowBoard.vue'
+// import NewBoard from '@/views/NewBoard.vue'
+import InstructorNew from '@/views/instructor/New.vue'
+// import ShowBoard from '@/views/ShowBoard.vue'
+import InstructorShow from '@/views/instructor/Show.vue'
 import Mypage from '@/views/Mypage.vue'
 import MypageProfile from '@/views/users/Profile.vue'
 import UserShow from '@/views/users/Show.vue'
@@ -27,17 +29,17 @@ const routes = [
     name: 'Signin',
     component: Signin
   },
-  // 登録画面
+  // 講師登録画面
   {
-    path: '/newboard',
-    name: 'NewBoard',
-    component: NewBoard
+    path: '/instructor/new',
+    name: 'InstructorNew',
+    component: InstructorNew
   },
-  // 掲示板詳細画面
+  // 講師詳細画面
   {
-    path: '/boards/:id',
-    name: 'ShowBoard',
-    component: ShowBoard
+    path: '/instructors/:id',
+    name: 'InstructorShow',
+    component: InstructorShow
   },
   {
   // マイページ

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :boards
+  has_one  :instructor
   has_many :apply_boards
   has_many :user_apply_boards, through: :apply_boards, source: :board
 end
