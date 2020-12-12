@@ -6,34 +6,33 @@
     <div class="app-explain">
       <p>楽器を「教えたい人」と「やりたい人」を繋ぐプラットフォーム</p>
     </div>
-    <div class="popular-instrument">
-      <Instruments v-if="boards!=''" :boards-prop="boards"></Instruments>
+    <div class="instructor-list">
+      <Instructors v-if="instructors!=''" :instructors-prop="instructors"/>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import Instruments from "@/components/Instruments.vue";
+import Instructors from "@/components/Instructors.vue";
 
 const hostName = 'localhost:3000';
-const path = '/api/boards'
+const path = '/api/instructors'
 
 export default {
   components: {
-    Instruments
+    Instructors
   },
   data() {
     return {
-      boards: []
+      instructors: []
     }
   },
   methods: {
-    getBoards: function(){
+    getInstructors: function(){
       axios.get(`http://${hostName}${path}`)
       .then((response) => {
-        console.log(response.data);
-        this.boards = response.data;
+        this.instructors = response.data;
       })
       .catch(function(error) {
         console.log(error);
@@ -41,7 +40,7 @@ export default {
     }
   },
   created: function() {
-    this.getBoards();
+    this.getInstructors();
   }
 }
 </script>

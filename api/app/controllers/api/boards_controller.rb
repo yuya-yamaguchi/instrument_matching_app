@@ -16,7 +16,6 @@ class Api::BoardsController < ApplicationController
     applied_flg = false
     board = Board.find(params[:id])
     apply_board = ApplyBoard.where(user_id: params[:user_id]).where(board_id: params[:id])
-    # binding.pry
     if apply_board.length > 0
       applied_flg = true
     end

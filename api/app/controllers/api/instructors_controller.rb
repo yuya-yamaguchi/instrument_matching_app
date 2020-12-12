@@ -1,5 +1,17 @@
 class Api::InstructorsController < ApplicationController
 
+  def index
+    out_params = []
+    # PENDING テーブル結合できないか？？
+    instructors = Instructor.all
+    # 講師ごとのユーザ情報を取得
+    instructors.each do |instructor|
+      user = instructor.user
+      out_params << instructor.set_instructor_params(user)
+    end
+    render json: out_params
+  end
+
   def create
     instructor = Instructor.new(instructor_params)
     if instructor.save
