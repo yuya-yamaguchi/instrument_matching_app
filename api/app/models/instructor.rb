@@ -1,6 +1,8 @@
 class Instructor < ApplicationRecord
 
   belongs_to :user
+  has_many   :reserves
+  has_many   :reserve_settings
 
   def set_instructor_params(user)
     params = {
