@@ -13,16 +13,26 @@ class Api::InstructorsController < ApplicationController
   end
 
   def show
-    applied_flg = false
     instructor = Instructor.find(params[:id])
     user = instructor.user
     out_params = instructor.set_instructor_params(user)
+    
     render json: { instructor: out_params }
   end
 
   def create
     instructor = Instructor.new(instructor_params)
     if instructor.save
+      # PENDING トランザクションを考慮する
+      7.times do |i|
+        24.times do |j|
+          reserve_setting = ReserveSetting.new(instructor_id: instructor.id,
+                                               week: i,
+                                               hour: j,
+                                               reservable_flg: 1)
+          reserve_setting.save
+        end
+      end
       render status: 200
     else
       render status: 500
@@ -32,5 +42,11 @@ class Api::InstructorsController < ApplicationController
   private
   def instructor_params
     params.require(:instructor).permit(:title, :details).merge(user_id: params[:user_id])
+  end
+
+  def order_query(column_values)
+    column_values.each.with_index(1).inject('CASE week ') do |order_query, (column_value, index)|
+      order_query << "WHEN #{column_value} THEN #{index} "
+    end << 'END'
   end
 end

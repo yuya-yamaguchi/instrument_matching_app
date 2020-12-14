@@ -22,5 +22,7 @@ Rails.application.routes.draw do
         get :profile
       end
     end
+
+    resources :reserves, only: [:index, :create]
   end
 end

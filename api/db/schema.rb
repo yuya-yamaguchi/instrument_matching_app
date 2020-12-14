@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_124324) do
+ActiveRecord::Schema.define(version: 2020_12_13_052610) do
 
   create_table "apply_boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -40,6 +40,31 @@ ActiveRecord::Schema.define(version: 2020_12_12_124324) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_instructors_on_user_id"
+  end
+
+  create_table "reserve_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "instructor_id", null: false
+    t.integer "week", null: false
+    t.integer "hour", null: false
+    t.integer "minute", default: 0, null: false
+    t.boolean "reservable_flg", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["instructor_id"], name: "index_reserve_settings_on_instructor_id"
+  end
+
+  create_table "reserves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "instructor_id", null: false
+    t.date "date", null: false
+    t.integer "week", null: false
+    t.integer "hour", null: false
+    t.integer "minute", default: 0, null: false
+    t.integer "fee", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["instructor_id"], name: "index_reserves_on_instructor_id"
+    t.index ["user_id"], name: "index_reserves_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
