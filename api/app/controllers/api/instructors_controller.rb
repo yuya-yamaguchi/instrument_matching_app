@@ -13,36 +13,11 @@ class Api::InstructorsController < ApplicationController
   end
 
   def show
-    reserve_settings = []
-    reserve_settings_params = []
-    weeks = []
     instructor = Instructor.find(params[:id])
     user = instructor.user
     out_params = instructor.set_instructor_params(user)
-    today = Date.today
-    week = today.wday
-    weeks = []
-    loop do
-      weeks << week
-      week += 1
-      week = 0 if week > 6
-      break if weeks.length >= 7
-    end
-    24.times do |i|
-      reserve_settings << instructor.reserve_settings.where(hour: i).order(order_query(weeks))
-    end
     
-    reserve_settings.each do |reserve_setting|
-      reserve_setting.each_with_index do |r, j|
-        if r.reservable_flg == true
-          reserve = Reserve.where(instructor_id: instructor.id).where(hour: r.hour).where(date: today+j)
-          if reserve.length > 0
-            r.reservable_flg = false
-          end
-        end
-      end
-    end
-    render json: { instructor: out_params, reserve_settings: reserve_settings }
+    render json: { instructor: out_params }
   end
 
   def create

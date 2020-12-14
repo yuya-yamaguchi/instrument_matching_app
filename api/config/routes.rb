@@ -23,6 +23,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :reserves, only: [:create]
+    resources :reserves, only: [:index, :create]
   end
 end

@@ -10,7 +10,8 @@
         <p class="sub-title">できること</p>
         <p class="explain-text">{{ instructor.details }}</p>
       </div>
-      <div class="sub-title">
+      <button @click="getReserve()">予約表を表示</button>
+      <div v-if="reserveSettings.length!=0" class="sub-title">
         予約一覧
         <table>
           <tr>
@@ -22,7 +23,7 @@
           <tr v-for="(reserveSetting, j) in reserveSettings" :key="j">
             <td>{{ j }}:00</td>
             <template v-for="(r, k) in reserveSetting" :key="k">
-              <td v-if="r.reservable_flg==true" @click="getReserve(r.week, r.hour)" class="reservable_culumn">
+              <td v-if="r.reservable_flg==true" @click="postReserve(r.week, r.hour)" class="reservable_culumn">
               </td>
               <td v-else class="no_reservable_culumn">
                 
@@ -53,7 +54,7 @@ export default {
   data() {
     return {
       instructor: {},
-      reserveSettings: {},
+      reserveSettings: [],
       reserve_days: one_week
     }
   },
@@ -68,15 +69,30 @@ export default {
         }
       )
       .then((response) => {
-        console.log(response.data.reserve_settings);
+        console.log(this.reserveSettings.length);
         this.instructor = response.data.instructor;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    },
+    getReserve: function() {
+      axios.get(
+        `http://${hostName}${reserve_path}`,
+        {
+          params: {
+            instructor_id: this.$route.params.id
+          }
+        }
+      )
+      .then((response) => {
         this.reserveSettings = response.data.reserve_settings;
       })
       .catch(function(error) {
         console.log(error);
       });
     },
-    getReserve: function(j, k) {
+    postReserve: function(j, k) {
       var today = new Date();
       today.setDate(today.getDate() + j);
       console.log(k, j);
