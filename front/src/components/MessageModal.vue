@@ -34,7 +34,6 @@ export default {
       this.$emit('from-child')
     },
     sendMessage: function() {
-      console.log(this.message);
       axios.post(
         `http://${hostName}${message_path}`,
         {

@@ -1,5 +1,17 @@
 class Api::MessageRoomsController < ApplicationController
 
+  def index
+    out_params = []
+    user = User.find(params[:user_id])
+    message_rooms = user.message_rooms
+    message_rooms.each do |message_room|
+      user = message_room.users.where.not(id: params[:user_id])
+      latest_message = message_room.messages.order(updated_at: :desc).limit(1)
+      out_params << message_room.set_out_params(user.first.name, latest_message.first)
+    end
+    render json: out_params
+  end
+  
   def create
     instructor = Instructor.find(params[:instructor_id])
     user = User.find(params[:user_id])

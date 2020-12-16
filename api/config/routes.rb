@@ -25,6 +25,6 @@ Rails.application.routes.draw do
 
     resources :reserves, only: [:index, :create]
 
-    resources :message_rooms, only: [:create]
+    resources :message_rooms, only: [:index, :create]
   end
 end
