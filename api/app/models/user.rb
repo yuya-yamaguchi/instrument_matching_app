@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
   has_one  :instructor
   has_many :apply_boards
   has_many :user_apply_boards, through: :apply_boards, source: :board
+  has_many :entry_rooms
+  has_many :message_rooms, through: :entry_rooms
+  has_many :messages
 end

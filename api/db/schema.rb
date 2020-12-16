@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_052610) do
+ActiveRecord::Schema.define(version: 2020_12_15_055430) do
 
   create_table "apply_boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2020_12_13_052610) do
     t.index ["user_id"], name: "fk_rails_0732f8ef3d"
   end
 
+  create_table "entry_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "message_room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_room_id"], name: "index_entry_rooms_on_message_room_id"
+    t.index ["user_id"], name: "index_entry_rooms_on_user_id"
+  end
+
   create_table "instructors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
@@ -40,6 +49,22 @@ ActiveRecord::Schema.define(version: 2020_12_13_052610) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_instructors_on_user_id"
+  end
+
+  create_table "message_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "message_room_id", null: false
+    t.text "text", null: false
+    t.boolean "read_flg", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_room_id"], name: "index_messages_on_message_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "reserve_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|

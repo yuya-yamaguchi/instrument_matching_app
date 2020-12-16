@@ -24,5 +24,7 @@ Rails.application.routes.draw do
     end
 
     resources :reserves, only: [:index, :create]
+
+    resources :message_rooms, only: [:create]
   end
 end

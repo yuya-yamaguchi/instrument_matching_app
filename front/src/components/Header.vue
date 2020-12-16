@@ -85,6 +85,7 @@ header{
       border-radius: 5px;
       height: 30px;
       line-height: 30px;
+      cursor: pointer;
     }
     .user-name {
       font-size: 16px;
