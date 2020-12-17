@@ -12,6 +12,17 @@ class Api::MessageRoomsController < ApplicationController
     render json: out_params
   end
   
+  def show
+    out_params = []
+    message_room = MessageRoom.find(params[:id])
+    messages = message_room.messages
+    reserver = message_room.users.where.not(id: params[:user_id])
+    messages.each do |message|
+      out_params << message.set_out_params
+    end
+    render json: out_params
+  end
+
   def create
     instructor = Instructor.find(params[:instructor_id])
     user = User.find(params[:user_id])
