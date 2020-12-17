@@ -43,10 +43,4 @@ class Api::InstructorsController < ApplicationController
   def instructor_params
     params.require(:instructor).permit(:title, :details).merge(user_id: params[:user_id])
   end
-
-  def order_query(column_values)
-    column_values.each.with_index(1).inject('CASE week ') do |order_query, (column_value, index)|
-      order_query << "WHEN #{column_value} THEN #{index} "
-    end << 'END'
-  end
 end

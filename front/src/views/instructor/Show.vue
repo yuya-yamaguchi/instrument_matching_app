@@ -1,8 +1,10 @@
 <template>
   <div class="double-container">
+    <MessageModal v-show="messageContent" @from-child="closeMessage"/>
     <div class="side-container">
       <img src="@/assets/logo.png">
       <p class="user-name">{{ instructor.user_name }}</p>
+      <button @click="enterMessage()" class="button-default">メッセージで相談する</button>
     </div>
     <div class="main-container">
       <h3 class="main-title">{{ instructor.title }}</h3>
@@ -38,6 +40,7 @@
 
 <script>
 import axios from 'axios';
+import MessageModal from '@/components/MessageModal.vue';
 
 const hostName = 'localhost:3000';
 const path = '/api/instructors';
@@ -51,8 +54,12 @@ for (var i=0; i < 7; i++) {
 }
 
 export default {
+  components: {
+    MessageModal
+  },
   data() {
     return {
+      messageContent: false,
       instructor: {},
       reserveSettings: [],
       reserve_days: one_week
@@ -115,6 +122,12 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
+    },
+    enterMessage: function() {
+      this.messageContent = true;
+    },
+    closeMessage: function() {
+      this.messageContent = false;
     }
   },
   mounted: function() {

@@ -9,6 +9,8 @@ import InstructorShow from '@/views/instructor/Show.vue'
 import Mypage from '@/views/Mypage.vue'
 import MypageProfile from '@/views/users/Profile.vue'
 import UserShow from '@/views/users/Show.vue'
+import DirectIndex from '@/views/direct/Index.vue'
+import DirectShow from '@/views/direct/Show.vue'
 
 const routes = [
   // ホーム画面
@@ -58,6 +60,18 @@ const routes = [
     path: '/users/:id',
     name: 'User',
     component: UserShow,
+  },
+  // メッセージ一覧
+  {
+    path: '/mypage/direct',
+    name: 'DirectIndex',
+    component: DirectIndex,
+  },
+  // メッセージ詳細
+  {
+    path: '/mypage/direct/:id',
+    name: 'DirectShow',
+    component: DirectShow,
   }
 ]
 
