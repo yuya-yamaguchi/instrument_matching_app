@@ -7,7 +7,7 @@
         <router-link to="/signin" class="sign-btn">ログイン</router-link>
       </div>
       <div v-else class="header-menus">
-        <router-link to="/instructor/new" class="sign-btn">講師として登録</router-link>
+        <router-link v-if="!$store.getters.instructor_flg" to="/instructor/new" class="sign-btn">講師として登録</router-link>
         <button type="submit" @click="logout" class="sign-btn">ログアウト</button>
         <router-link to="/mypage" class="user-name">{{ $store.getters.email }}</router-link>
       </div>

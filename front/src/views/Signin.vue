@@ -47,7 +47,8 @@ export default {
             email:  response.data.data.email,
             token:  response.headers['access-token'],
             uid:    response.headers['uid'],
-            client: response.headers['client']
+            client: response.headers['client'],
+            instructor_flg: response.data.data.instructor_flg,
           }
         );
         this.$router.push({ 
