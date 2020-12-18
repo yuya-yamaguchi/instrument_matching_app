@@ -3,7 +3,8 @@ const state = {
   email:  '',
   token:  '',
   uid:    '',
-  client: ''
+  client: '',
+  instructor_flg: false
 };
 
 const getters = {
@@ -11,19 +12,18 @@ const getters = {
   email:  state => state.email,
   token:  state => state.token,
   uid:    state => state.uid,
-  client: state => state.client
+  client: state => state.client,
+  instructor_flg: state => state.instructor_flg
 }
 
 const mutations = {
-  // login (state, payload) {
-  //   state.token = payload;
-  // },
   logout (state) {
     state.id     = 0;
     state.email  = null;
     state.token  = null;
     state.uid    = null;
     state.client = null;
+    state.instructor_flg = false;
   },
   updateUser(state, user) {
     state.id     = user.id;
@@ -31,6 +31,7 @@ const mutations = {
     state.token  = user.token;
     state.uid    = user.uid;
     state.client = user.client;
+    state.instructor_flg = user.instructor_flg;
   }
 }
 
